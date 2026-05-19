@@ -30,14 +30,19 @@ files, their purpose, local conventions, and gotchas. An agent navigating the
 repo reads these maps instead of source, and opens a file only when it is about
 to change it.
 
-The maps are kept honest by a token cap that **halves at each depth**:
+The maps are kept honest by a token cap that **halves at each depth** — a
+`CLAUDE.md` at depth *n* is capped at C / 2ⁿ tokens, where C is the root cap:
 
-| Depth | Example | Cap (root C = 5k tokens) |
-|---|---|---|
-| 0 | `CLAUDE.md` | 5,000 |
-| 1 | `src/CLAUDE.md` | 2,500 |
-| 2 | `src/strategy/CLAUDE.md` | 1,250 |
-| n | … | C / 2ⁿ |
+```
+Depth                                      Cap      Map size
+──────────────────────────────────────────────────────────────
+0   CLAUDE.md                             5,000  ████████████████
+1   └─ src/CLAUDE.md                      2,500  ████████
+2      └─ strategy/CLAUDE.md              1,250  ████
+3         └─ intraday/CLAUDE.md             625  ██
+                                          ─────
+    root → leaf orientation cost  =  C + C/2 + C/4 + …  <  2C
+```
 
 This has a useful property. The cumulative budget to read every map from the
 root down to a leaf is a geometric series — `C + C/2 + C/4 + … = 2C`. **However
@@ -51,6 +56,25 @@ Full model and reasoning: [`docs/context-management.md`](docs/context-management
 
 Each session is wrapped in a fixed ritual. Full walkthrough:
 [`docs/session-lifecycle.md`](docs/session-lifecycle.md).
+
+```
+   ┌─────────────────────────── next session ──────────────────────────┐
+   │                                                                    │
+   ▼                                                                    │
+kickoff prompt                                                          │
+   │  priorities · must-know context · files to read                    │
+   ▼                                                                    │
+session-protocol ──── prime context · draft fast · plan before code     │
+   │                                                                    │
+   ▼                                                                    │
+  work ─────────────── artifacts → files, not chat                      │
+   │                   big change?  /orchestrate-mini · /orchestrate    │
+   ▼                                                                    │
+CLOSE                                                                   │
+   ├─ /housekeeping ──── update TODO · HANDOFF · CLAUDE.md maps · log    │
+   ├─ /kickoff ───────── generate next kickoff prompt ──────────────────┘
+   └─ /kickoff-critique  (optional) adversarially harden it
+```
 
 | Skill | When | What it does |
 |---|---|---|
