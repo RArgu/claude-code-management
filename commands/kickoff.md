@@ -37,6 +37,10 @@ Interview me on scope before proceeding.
 - **Actionable details must be traceable**: if a priority has known steps, reference
   which file holds them. If the steps aren't in `TODO.md`/`HANDOFF.md`, add them
   before generating the kickoff.
+- **Name the files each priority needs to read.** Source the read-list ("files relevant
+  to the priorities") from `HANDOFF.md`'s "Next" note and `TODO.md` — NOT from `CLAUDE.md`
+  (kept lean of per-feature pointers). If those files aren't named there yet, add them to
+  `HANDOFF.md` first, then cite them in the kickoff.
 - Always end with "Interview me on scope before proceeding."
 - Keep the whole message under 300 words.
 
