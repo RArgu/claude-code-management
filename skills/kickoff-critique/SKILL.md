@@ -43,7 +43,9 @@ Mark each criticism as **valid**, **partially valid**, or **overcorrection**.
 Rewrite the kickoff incorporating only the valid and partially-valid critiques.
 Keep the same format: priorities (max 3) with sequencing if needed, key context
 (3-5 bullets), the file-read list, and the closing "Interview me on scope before
-proceeding." Under 300 words.
+proceeding." Under 300 words. **Output the rewritten kickoff inside a single fenced
+code block (```), with ONLY the kickoff text inside the fence**, so the user can copy
+it in one click — keep your critique notes and commentary OUTSIDE the fence.
 
 ## Step 4: Sync references
 
@@ -55,4 +57,5 @@ rewritten kickoff:
 3. Update the `HANDOFF.md` "next session" notes to match the kickoff priorities.
 4. Commit any changed files.
 
-Present the final kickoff to the user for copying.
+Present the final kickoff to the user for copying — in the single fenced code block
+from Step 3 (only the kickoff text inside the fence).

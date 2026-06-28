@@ -44,4 +44,7 @@ Interview me on scope before proceeding.
 - Always end with "Interview me on scope before proceeding."
 - Keep the whole message under 300 words.
 
-3. **Present the message** to the user for review before they copy it.
+3. **Present the message** to the user for review before they copy it. **Output the
+   kickoff message inside a single fenced code block (```), with ONLY the kickoff text
+   inside the fence** — so the user can copy it in one click. Keep any of your own
+   commentary (notes, caveats, the offer to tweak) OUTSIDE the fence.
