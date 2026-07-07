@@ -33,9 +33,12 @@ system; every change can affect real users. Validate before applying.">
 
 <The commands that prove a change is sound — test suite, smoke checks, etc.>
 
-## Housekeeping
+## Session ritual
 
-Run `/housekeeping` at the end of every session.
+- **Start:** `/kickoff-consume` — loads the kickoff from the newest `HANDOFF.md`
+  entry and interviews on scope.
+- **End:** `/housekeeping` — updates the docs and, as its last step, runs
+  `/kickoff` to write the next session's kickoff into `HANDOFF.md`.
 
 <!-- Root CLAUDE.md. Depth 0 — cap = C (e.g. 5,000 tokens). This is the only
 CLAUDE.md that carries project-wide goal, identity, and standards; subfolder
