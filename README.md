@@ -61,27 +61,34 @@ Each session is wrapped in a fixed ritual. Full walkthrough:
    ┌─────────────────────────── next session ──────────────────────────┐
    │                                                                    │
    ▼                                                                    │
-kickoff prompt                                                          │
-   │  priorities · must-know context · files to read                    │
+/kickoff-consume ──── read the kickoff from the top HANDOFF.md entry ·   │
+   │                  prime context · interview on scope                │
    ▼                                                                    │
-session-protocol ──── prime context · draft fast · plan before code     │
+session-protocol ──── draft fast · plan before code · files not chat     │
    │                                                                    │
    ▼                                                                    │
   work ─────────────── artifacts → files, not chat                      │
    │                   big change?  /orchestrate-mini · /orchestrate    │
    ▼                                                                    │
 CLOSE                                                                   │
-   ├─ /housekeeping ──── update TODO · HANDOFF · CLAUDE.md maps · log    │
-   ├─ /kickoff ───────── generate next kickoff prompt ──────────────────┘
-   └─ /kickoff-critique  (optional) adversarially harden it
+   └─ /housekeeping ──── update TODO · HANDOFF · CLAUDE.md maps · log ·  │
+        │                prune DECISIONS · commit                       │
+        └─ /kickoff ───── generate → adversarially harden → write the   │
+                          kickoff into the top HANDOFF.md entry ────────┘
 ```
+
+The close is **one** command: `/housekeeping` runs `/kickoff` as its final
+step. `/kickoff` folds in the old `/kickoff-critique` pass (draft → critique →
+counter-critique → rewrite) and writes the hardened kickoff *into* the newest
+`HANDOFF.md` entry — no separate file, no copy-paste. The next session opens
+with a single `/kickoff-consume`.
 
 | Skill | When | What it does |
 |---|---|---|
-| `session-protocol` | session start | Read decisions, draft fast, write to files, plan before implementing |
-| `/housekeeping` | session end | Update TODO / HANDOFF / CLAUDE.md maps, write the session log, check budgets, commit |
-| `/kickoff` | after housekeeping | Generate the next session's priming prompt |
-| `/kickoff-critique` | after kickoff | Adversarially review that prompt before it is used |
+| `/kickoff-consume` | session start | Read the kickoff from the top `HANDOFF.md` entry, prime context, interview on scope |
+| `session-protocol` | session start | Draft fast, write to files, plan before implementing (reads decisions itself only in a session not opened by `/kickoff-consume`) |
+| `/housekeeping` | session end | Update TODO / HANDOFF / CLAUDE.md maps, write the session log, keep `DECISIONS.md` bounded, check budgets, commit, then run `/kickoff` |
+| `/kickoff` | end of housekeeping | Generate, adversarially harden, and write the next session's kickoff into the newest `HANDOFF.md` entry |
 | `/audit-docs` | periodically | Parallel agents sweep the doc tree for staleness |
 
 ## 3. Orchestration
@@ -107,7 +114,11 @@ cp -r skills/*          your-project/.claude/skills/
 ```
 
 Then seed the management docs from `templates/` — a root `CLAUDE.md`, a
-`CLAUDE.md` in each folder, plus `TODO.md` and `HANDOFF.md`.
+`CLAUDE.md` in each folder, plus `TODO.md`, `HANDOFF.md`, `DECISIONS.md`, and an
+empty `docs/decision-log.md` (the archive tier that keeps `DECISIONS.md`
+bounded, mirroring how `session_logs/` archives trimmed `HANDOFF.md` entries).
+No `.gitignore` entry is needed — the kickoff lives inside `HANDOFF.md`, not a
+scratch file.
 
 ## Layout
 
@@ -115,7 +126,7 @@ Then seed the management docs from `templates/` — a root `CLAUDE.md`, a
 commands/    Slash commands  → .claude/commands/
 skills/      Agent skills    → .claude/skills/
 docs/        The methodology — context management, session lifecycle
-templates/   Starter CLAUDE.md / TODO.md / HANDOFF.md skeletons
+templates/   Starter CLAUDE.md / TODO.md / HANDOFF.md / DECISIONS.md / decision-log.md skeletons
 ```
 
 ## License

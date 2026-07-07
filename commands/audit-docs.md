@@ -9,7 +9,11 @@ agent's context stays scoped.
   commands still accurate? Every referenced file still exists?
 - `TODO.md` — every item still actionable? Completed items checked off?
 - `HANDOFF.md` — most recent entry matches the latest `session_logs/` entry?
-- `DECISIONS.md` — each decision still reflected in the code?
+- `DECISIONS.md` — holds only currently-in-force invariants, within its flat
+  cap? Flag any entry whose governed code area no longer exists (deep
+  obsolescence sweep) — it should be moved to `docs/decision-log.md` with user
+  approval. The per-session version of this check lives in `/housekeeping` step 6.
+- `docs/decision-log.md` — exists as the append-only archive; not loaded at start.
 
 ## Agent 2: The CLAUDE.md hierarchy
 - Every folder has a `CLAUDE.md` — glob the directory tree, flag any folder
