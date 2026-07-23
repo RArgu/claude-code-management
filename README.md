@@ -106,19 +106,33 @@ interface contract up front and writes the integration code itself.
 
 ## Install
 
-Copy the skills into any project:
+Two self-installing commands do the work — install their files once, then invoke
+the one that matches your repo's state:
+
+| Your repo | Command | What it does |
+|---|---|---|
+| No management docs yet | `/setup-cc-management` | Installs the skills, generates the `CLAUDE.md` maps from your code, seeds the lifecycle docs |
+| Already runs an older version | `/modernize-cc-management` | Refreshes the skills and migrates the data-file conventions to current |
+
+To bootstrap, copy at least those two command files (or all of them) into the
+target repo, then run the matching command from a Claude Code session there:
 
 ```bash
-cp commands/*           your-project/.claude/commands/
-cp -r skills/*          your-project/.claude/skills/
+cp commands/*  your-project/.claude/commands/
+cp -r skills/* your-project/.claude/skills/
 ```
 
-Then seed the management docs from `templates/` — a root `CLAUDE.md`, a
-`CLAUDE.md` in each folder, plus `TODO.md`, `HANDOFF.md`, `DECISIONS.md`, and an
-empty `docs/decision-log.md` (the archive tier that keeps `DECISIONS.md`
-bounded, mirroring how `session_logs/` archives trimmed `HANDOFF.md` entries).
-No `.gitignore` entry is needed — the kickoff lives inside `HANDOFF.md`, not a
-scratch file.
+Both branch first, stop before merge for your review, and gate any judgment work
+(inferring decisions, reformatting `TODO.md`) on your approval. Not sure which
+state a repo is in? If `.claude/commands/` or a root `TODO.md`/`HANDOFF.md`
+already exists → modernize; otherwise → setup.
+
+Prefer to do it by hand? Copy `commands/` and `skills/` as above, then seed the
+docs from `templates/` — a root `CLAUDE.md`, a `CLAUDE.md` in each folder, plus
+`TODO.md`, `HANDOFF.md`, `DECISIONS.md`, and an empty `docs/decision-log.md` (the
+archive tier that keeps `DECISIONS.md` bounded, mirroring how `session_logs/`
+archives trimmed `HANDOFF.md` entries). No `.gitignore` entry is needed — the
+kickoff lives inside `HANDOFF.md`, not a scratch file.
 
 ## Layout
 
