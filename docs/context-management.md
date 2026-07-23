@@ -8,8 +8,8 @@ durable across a long-lived project.
 | File | Role | Lifespan |
 |---|---|---|
 | `CLAUDE.md` (per folder) | Map of one directory — its files, purpose, conventions, gotchas | Stable; updated when the folder changes |
-| `TODO.md` | Volatile task queue | Rewritten continuously |
-| `HANDOFF.md` | Session-to-session memory — the last 2-3 sessions; its newest entry also carries the next-session kickoff block | Rolling; old entries move to `session_logs/` |
+| `TODO.md` | Volatile task queue — the only home for forward-looking state; each item is self-describing (a "done when", plus a few-line "context" block that lives on the task) | Rewritten continuously |
+| `HANDOFF.md` | Session-to-session memory — backward-looking (the last 2-3 sessions); its newest entry also carries the next-session kickoff block | Rolling; old entries move to `session_logs/` |
 | `DECISIONS.md` | Currently-in-force invariants only — loaded every session | Bounded (flat cap); supersede-in-place; retired entries move to `docs/decision-log.md`; changes need user approval |
 | `docs/decision-log.md` | Superseded / obsolete decisions and their rationale | Append-only archive; never loaded at session start |
 | `session_logs/session_NNN.md` | Per-session archive | Write-once; never loaded at session start |

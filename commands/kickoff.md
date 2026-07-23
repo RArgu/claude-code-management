@@ -32,7 +32,10 @@ Interview me on scope before proceeding.
 
 Rules:
 - Priorities come from `TODO.md` high-priority and operational items.
-- Key context comes from this session's `HANDOFF.md` entry (Done / Key decisions).
+- Each priority's explaining context (what/why/how) is distilled from that task's
+  `TODO.md` **context block** — TODO is the durable source; this kickoff is the
+  digest. Session-level context (a decision or discovery that affects how the
+  session works) comes from this session's `HANDOFF.md` entry (Done / Key decisions).
 - Only include context that would change how the session operates — skip routine detail.
 - **Actionable details must be traceable**: if a priority has known steps, reference
   which file holds them. If the steps aren't in `TODO.md`/`HANDOFF.md`, add them
@@ -81,8 +84,6 @@ Write the final kickoff as a `### Next-session kickoff` block at the bottom of
 ### Done
 ...
 ### Key decisions
-...
-### Open items / next session
 ...
 ### Next-session kickoff
 <the hardened kickoff text — for the session that starts with /kickoff-consume>

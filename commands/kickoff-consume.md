@@ -14,8 +14,8 @@ kickoff` block.
 
 **If the top entry has no kickoff block** — the previous session didn't run
 `/kickoff`, or this is a fresh project. Fall back: read `DECISIONS.md` and
-`TODO.md`, propose priorities from the top HANDOFF entry's "Open items / next
-session" and TODO high-priority items, and continue at step 4.
+`TODO.md`, propose priorities from the `TODO.md` high-priority items (each
+carries its own "done when"/"why"), and continue at step 4.
 
 ### 2. Check freshness
 The kickoff block is stamped `Session NNN kickoff`. It is fresh iff it sits in

@@ -1,9 +1,10 @@
 # Handoff
 
-<!-- Session-to-session memory. Newest entry on top. Keep only the last 2-3
-sessions here; move older entries to session_logs/. Keep within ~1,000 tokens.
-Only the NEWEST entry carries a "Next-session kickoff" block; older entries drop
-it when trimmed. -->
+<!-- Session-to-session memory — BACKWARD-looking only (what happened). Newest
+entry on top. Keep only the last 2-3 sessions here; move older entries to
+session_logs/. Keep within ~1,000 tokens. Forward-looking state (what to do next)
+lives in TODO.md, not here. Only the NEWEST entry carries a "Next-session kickoff"
+block; older entries drop it when trimmed. -->
 
 ## Session NNN — YYYY-MM-DD
 
@@ -12,9 +13,6 @@ it when trimmed. -->
 
 ### Key decisions
 - <decisions made — promote durable ones to DECISIONS.md>
-
-### Open items / next session
-- <what the next session should pick up first>
 
 ### Next-session kickoff
 <!-- Written by /kickoff (last step of /housekeeping); read by /kickoff-consume

@@ -4,12 +4,24 @@ Run at the end of every session. Complete all steps in order; the final step
 chains into `/kickoff`, so this is the only close command the user types.
 
 ## 1. Update TODO.md
+`TODO.md` is the only home for forward-looking state (HANDOFF is backward-only),
+and each task carries its own explaining context.
 - Mark completed items `[x]`.
-- Add items discovered during the session.
+- Add items discovered during the session — each with a one-line "done when"
+  (deliverable / acceptance). No deliverable → it's a thought, not an item.
 - Remove items that are no longer relevant.
+- Attach a "context" block (a few lines: constraints, environment, what's
+  involved) to any item whose title hides detail — especially items in scope for
+  the next session or two. The context lives ON the task, so it survives after
+  this session's HANDOFF entry is trimmed to `session_logs/`.
+- For any item CARRIED FORWARD unfinished (lingering / bumped toward Backlog),
+  ensure it carries at least a one-line context, captured now while it's fresh.
+- If an item's context outgrows a few lines, put it in a `docs/` file and point
+  the item at it (`context: see docs/<file>.md`) — never inline a wall in TODO.
 
 ## 2. Update HANDOFF.md
-- Add a new session entry at the top: what was done, key decisions, open items.
+- Add a new session entry at the top: what was done, key decisions. (Forward
+  state — what to do next — goes in `TODO.md`, not here.)
 - Keep only the 2-3 most recent sessions; trim older entries to `session_logs/`.
 - Before trimming, scan for operational learnings that would be lost (see step 5).
 - The upcoming priorities' file pointers go into the `### Next-session kickoff`
